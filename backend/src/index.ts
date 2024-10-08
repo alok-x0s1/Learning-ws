@@ -5,6 +5,7 @@ import { WebSocketServer, WebSocket } from "ws";
 import cors from "cors";
 import { v4 as uuidv4 } from "uuid";
 import Room from "./models/room";
+import { dbConnect } from "./utils/db";
 
 const app = express();
 const server = http.createServer(app);
@@ -58,6 +59,7 @@ wss.on("connection", (ws: WebSocket) => {
 
 // Server started
 const port = process.env.PORT || 8000;
+dbConnect();
 server.listen(port, () => {
 	console.log(`Server is starting at port : http://localhost:${port}`);
 });
