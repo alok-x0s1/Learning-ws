@@ -11,11 +11,12 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
 
+const frontend_url = process.env.FRONTEND_URL as string;
 // Middlewares
 app.use(express.json());
 app.use(
 	cors({
-		origin: ["http://localhost:5173"],
+		origin: [frontend_url],
 		credentials: true,
 	})
 );
